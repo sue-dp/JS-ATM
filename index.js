@@ -1,6 +1,6 @@
 class ATM {
-  constructor(current_balance) {
-    this.current_balance = current_balance;
+  constructor(currentBalance) {
+    this.currentBalance = currentBalance;
   }
 
   accountDeposit() {
@@ -9,52 +9,52 @@ class ATM {
     );
     if (deposit < 0) {
       console.log("Please enter an amount greater than $0.\n");
-      return this.current_balance;
+      return this.currentBalance;
     }
     if (deposit > 0) {
       console.log("You have deposited $" + deposit);
     }
     if (deposit === 0) {
-      return this.current_balance;
+      return this.currentBalance;
     }
-    this.current_balance += deposit;
-    return this.current_balance;
+    this.currentBalance += deposit;
+    return this.currentBalance;
   }
 
   accountWithdrawal() {
-    const withdrawal = parseFloat(
+    let withdrawal = parseFloat(
       prompt("How much would you like to withdraw? (enter 0 to cancel)\n>>>")
     );
     if (withdrawal < 0) {
       console.log("Please enter an amount greater than $0.\n");
-      return this.current_balance;
+      return this.currentBalance;
     }
-    if (withdrawal > this.current_balance) {
+    if (withdrawal > this.currentBalance) {
       console.log("You have insufficient funds\n");
-      const newWithdrawal = parseFloat(
+      let newWithdrawal = parseFloat(
         prompt(
-          "Please enter an amount less than or equal to $" + current_balance
+          "Please enter an amount less than or equal to $" + currentBalance
         )
       );
       withdrawal = newWithdrawal;
     }
     if (withdrawal === 0) {
-      return this.current_balance;
+      return this.currentBalance;
     }
     console.log(
       "You have withdrawn $" + withdrawal + ". Please take your cash."
     );
-    this.current_balance -= withdrawal;
-    return this.current_balance;
+    this.currentBalance -= withdrawal;
+    return this.currentBalance;
   }
 }
 
 console.log("Welcome to B.O.S.S. ATM!");
-let current_balance = 100;
-const account = new ATM(current_balance);
+let currentBalance = 100;
+const account = new ATM(currentBalance);
 
 while (true) {
-  console.log("Your current balance is: $" + current_balance);
+  console.log("Your current balance is: $" + currentBalance);
   const menu =
     "Please choose from the following options:\n1: Balance Check\n2: Deposit\n3: Withdrawal\n4: Quit\n>>>";
   const user_input = prompt(menu);
@@ -62,9 +62,9 @@ while (true) {
   if (user_input === "1") {
     // console.log("Your current balance is: $" + current_balance);
   } else if (user_input === "2") {
-    current_balance = account.accountDeposit();
+    currentBalance = account.accountDeposit();
   } else if (user_input === "3") {
-    current_balance = account.accountWithdrawal();
+    currentBalance = account.accountWithdrawal();
   } else if (user_input === "4") {
     console.log("Thank you, See you next time!");
     break;
